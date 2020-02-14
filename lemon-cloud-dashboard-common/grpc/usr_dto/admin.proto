@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package usr_dto;
+option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/usr_dto";
+
+message AdminLoginRequest {
+    string number = 1;
+    string password = 2;
+}
+
+message AdminLoginResponse {
+    string token = 1;
+    string username = 2;
+}
