@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package adm_dto;
+option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/adm_dto";
+
+message AdministratorLoginRequestDto {
+    string number = 1;
+    string password = 2;
+}
+
+message AdministratorLoginResponseDto {
+    string token = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package adm_service;
+option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/adm_service";
+
+import "grpc/adm_dto/administrator.proto";
+
+service AdministratorService {
+    rpc Login (adm_dto.AdministratorLoginRequestDto) returns (adm_dto.AdministratorLoginResponseDto) {
+    }
+}

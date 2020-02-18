@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package adm_dto;
+option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/adm_dto";
+
+message ServiceInfoDto {
+    string name = 1;
+    string tag = 2;
+    string introduce = 3;
+    string service_icon = 4;
+}
+
+message OnlineServiceInfoDto {
+    string endpoint_host = 1;
+    uint32 endpoint_port = 2;
+    string application_version = 3;
+    uint32 application_version_num = 4;
+}
+
+message ServiceStatusDto {
+    ServiceInfoDto info = 1;
+    repeated OnlineServiceInfoDto online_info_list = 2;
+}
+
+message AllServiceStatusDto {
+    repeated ServiceStatusDto all_service_status_list = 1;
+}

@@ -1,0 +1,12 @@
+registry:
+  kind: etcd
+  endpoints:
+    - localhost:2379
+  username:
+  password:
+service:
+  namespace: cn.lemonit.cloud
+  secret_id: none
+  secret_key: none
+  override_host: localhost
+  port: 33385
