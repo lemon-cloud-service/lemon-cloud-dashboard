@@ -10,11 +10,10 @@ import (
 
 func SystemStart() {
 	var err error
-
-	// print system info
+	// 打印系统信息
 	define.PrintSystemInfo()
 
-	// read config file
+	// 从磁盘中读取配置文件
 	lccu_log.Info("Start reading configuration files...")
 	err = manager.ConfigManagerInstance().Init()
 	if err != nil {
@@ -23,11 +22,12 @@ func SystemStart() {
 	}
 	lccu_log.Info("Configuration file read completed")
 
-	// init registry
+	// 微服务注册
 	lccu_log.Info("Start configuring the registry...")
-	err = lccc_micro_service.SystemServiceInstance().RegisterNewService(&lccc_micro_service.ServiceRegisterConfig{
-		ServiceGeneralConfig: manager.ConfigManagerInstance().GeneralConfig(),
-		ServiceInfo:          define.GetServiceInfo(),
+	err = lccc_micro_service.CoreServiceSingletonInstance().RegisterServiceInstance(&lccc_micro_service.ServiceRegisterConfig{
+		ServiceGeneralConfig:   manager.ConfigManagerInstance().GeneralConfig(),
+		ServiceBaseInfo:        define.GetServiceBaseInfo(),
+		ServiceApplicationInfo: define.GetServiceApplicationInfo(),
 	}, define.GetSystemSettings())
 	if err != nil {
 		lccu_log.Error("System start failed. Error configuring registry: ", err.Error())
@@ -35,7 +35,7 @@ func SystemStart() {
 	}
 	lccu_log.Info("Registry config completed")
 
-	// start grpc server
+	// 开启gRPC服务
 	StartGrpcWebServer()
 
 	lccu_log.Infoln("Service started, waiting for access")

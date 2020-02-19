@@ -3,11 +3,20 @@ syntax = "proto3";
 package adm_dto;
 option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/adm_dto";
 
+message ServiceManagementModuleDto {
+    string name = 1;
+    string tag = 2;
+    string introduce = 3;
+    string module_icon_url = 4;
+    string index_url = 5;
+}
+
 message ServiceInfoDto {
     string name = 1;
     string tag = 2;
     string introduce = 3;
-    string service_icon = 4;
+    string service_icon_url = 4;
+    repeated ServiceManagementModuleDto managementModuleList = 5;
 }
 
 message OnlineServiceInfoDto {
