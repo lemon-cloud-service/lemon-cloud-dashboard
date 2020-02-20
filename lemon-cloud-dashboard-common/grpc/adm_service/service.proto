@@ -7,6 +7,8 @@ import "google/protobuf/empty.proto";
 import "grpc/adm_dto/service.proto";
 
 service ServiceService {
-    rpc GetMyServiceList (google.protobuf.Empty) returns (adm_dto.AllServiceStatusDto) {
+    rpc GetMyServiceBaseInfoList (google.protobuf.Empty) returns (adm_dto.ServiceBaseInfoListDto) {
+    }
+    rpc GetMyServiceInstanceInfoList (google.protobuf.Empty) returns (adm_dto.ServiceInstanceInfoListDto) {
     }
 }

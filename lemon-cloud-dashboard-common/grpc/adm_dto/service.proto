@@ -4,33 +4,38 @@ package adm_dto;
 option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/adm_dto";
 
 message ServiceManagementModuleDto {
-    string name = 1;
-    string tag = 2;
-    string introduce = 3;
+    string module_name = 1;
+    string module_key = 2;
+    string module_introduce = 3;
     string module_icon_url = 4;
     string index_url = 5;
 }
 
-message ServiceInfoDto {
-    string name = 1;
-    string tag = 2;
-    string introduce = 3;
-    string service_icon_url = 4;
-    repeated ServiceManagementModuleDto managementModuleList = 5;
+message ServiceBaseInfoDto {
+    // 这部分是从注册中心中读取到的其他服务信息
+    string service_key = 1;
+    string service_name = 2;
+    string service_introduce = 3;
+    // 以下是dashboard服务根据下载到的服务UI模块检索生成的
+    string service_icon_url = 51;
+    repeated ServiceManagementModuleDto management_module_list = 52;
 }
 
-message OnlineServiceInfoDto {
+message ServiceApplicationInfoDto {
+    string application_version = 1;
+    uint32 application_version_num = 2;
+}
+
+message ServiceInstanceInfoDto {
     string endpoint_host = 1;
     uint32 endpoint_port = 2;
-    string application_version = 3;
-    uint32 application_version_num = 4;
+    ServiceApplicationInfoDto application_info = 3;
 }
 
-message ServiceStatusDto {
-    ServiceInfoDto info = 1;
-    repeated OnlineServiceInfoDto online_info_list = 2;
+message ServiceBaseInfoListDto {
+    repeated ServiceBaseInfoDto all_service_base_info_list = 1;
 }
 
-message AllServiceStatusDto {
-    repeated ServiceStatusDto all_service_status_list = 1;
+message ServiceInstanceInfoListDto {
+    repeated ServiceInstanceInfoDto all_service_instance_info_list = 1;
 }
