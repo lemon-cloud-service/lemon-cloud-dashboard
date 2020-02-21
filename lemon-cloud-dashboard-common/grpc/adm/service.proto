@@ -1,7 +1,9 @@
 syntax = "proto3";
 
-package adm_dto;
-option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/adm_dto";
+package grpc_adm;
+option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/grpc_adm";
+
+import "google/protobuf/empty.proto";
 
 message ServiceManagementModuleDto {
     string module_name = 1;
@@ -38,4 +40,11 @@ message ServiceBaseInfoListDto {
 
 message ServiceInstanceInfoListDto {
     repeated ServiceInstanceInfoDto all_service_instance_info_list = 1;
+}
+
+service ServiceService {
+    rpc GetMyServiceBaseInfoList (google.protobuf.Empty) returns (ServiceBaseInfoListDto) {
+    }
+    rpc GetMyServiceInstanceInfoList (google.protobuf.Empty) returns (ServiceInstanceInfoListDto) {
+    }
 }

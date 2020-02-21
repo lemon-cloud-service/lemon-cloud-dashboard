@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package grpc_adm;
+option go_package = "github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common/grpc_adm";
+
+message AdministratorLoginRequestDto {
+    string number = 1;
+    string password = 2;
+}
+
+message AdministratorLoginResponseDto {
+    string token = 1;
+}
+
+service AdministratorService {
+    rpc Login (AdministratorLoginRequestDto) returns (AdministratorLoginResponseDto) {
+    }
+}
