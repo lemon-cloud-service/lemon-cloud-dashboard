@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"fmt"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/lemon-cloud-service/lemon-cloud-common/lemon-cloud-common-utils/lccu_log"
@@ -10,6 +11,7 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 	"net"
 	"net/http"
 )
@@ -31,9 +33,21 @@ func StartGrpcWebServer() {
 	if err != nil {
 		lccu_log.Error("failed to listen: %v", err)
 	}
-	s := grpc.NewServer()
+	// 注册gRPC的拦截器
+	var opts []grpc.ServerOption
+	var interceptor grpc.UnaryServerInterceptor
+	interceptor = func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+		md, ok := metadata.FromIncomingContext(ctx)
+		if ok {
+			fmt.Println("authorization: ", md.Get("authorization"))
+		}
+		return handler(ctx, req)
+	}
+	opts = append(opts, grpc.UnaryInterceptor(interceptor))
+	s := grpc.NewServer(opts...)
+	// 绑定所有服务实现
 	registerAllGrpcServiceImpl(s)
-
+	// 包装gRPC-web服务
 	grpcWebServer := grpcweb.WrapServer(s)
 	httpServer := &http.Server{
 		Handler: h2c.NewHandler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -56,5 +70,5 @@ func StartGrpcWebServer() {
 
 func registerAllGrpcServiceImpl(server *grpc.Server) {
 	adm_service.RegisterAdministratorServiceServer(server, &grpc_adm_service_impl.AdminUsrServiceImpl{})
-	adm_service.RegisterServiceServiceServer(server, &grpc_adm_service_impl.ServiceServiceImpl{})
+	//adm_service.RegisterServiceServiceServer(server, &grpc_adm_service_impl.ServiceServiceImpl{})
 }

@@ -35,8 +35,15 @@ func SystemStart() {
 	}
 	lccu_log.Info("Registry config completed")
 
+	// 工作区相关初始化
+	if err = StartWorkspaceProcessHandler(); err != nil {
+		lccu_log.Error("An error occurred during the initialization of the workspace，reason: ", err.Error())
+		os.Exit(1)
+	}
+
 	// 开启gRPC服务
 	StartGrpcWebServer()
 
+	// 启动完毕
 	lccu_log.Infoln("Service started, waiting for access")
 }

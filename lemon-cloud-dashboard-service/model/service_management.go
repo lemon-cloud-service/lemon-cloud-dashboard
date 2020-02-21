@@ -9,7 +9,7 @@ type ServiceManagementModuleDefine struct {
 }
 
 type ServiceManagementDefine struct {
-	ServiceKey           string                          `json:"service_key"  yaml:"service_icon_url"`                 // 服务的唯一标识
-	ServiceIconUrl       string                          `json:"service_icon_url" yaml:"service_icon_url"`             // 业务管理的图标URL，指定文件夹内的文件时需以/开头
-	ManagementModuleList []ServiceManagementModuleDefine `json:"management_module_list" yaml:"management_module_list"` // 管理模块列表
+	ServiceKey           string                           `json:"service_key"  yaml:"service_icon_url"`                 // 服务的唯一标识
+	ServiceIconUrl       string                           `json:"service_icon_url" yaml:"service_icon_url"`             // 业务管理的图标URL，指定文件夹内的文件时需以/开头
+	ManagementModuleList []*ServiceManagementModuleDefine `json:"management_module_list" yaml:"management_module_list"` // 管理模块列表
 }

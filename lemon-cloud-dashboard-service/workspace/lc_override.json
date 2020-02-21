@@ -1,0 +1,17 @@
+{
+  "services": [
+    {
+      "service_key": "lemon_cloud_user",
+      "service_icon_url": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1698355047,3119963339&fm=26&gp=0.jpg",
+      "management_module_list": [
+        {
+          "module_key": "user_group_manage",
+          "module_name": "用户组管理",
+          "module_introduce": "所有用户组的管理",
+          "module_icon_url": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582202202826&di=869e34e4d70b071c430a2b8964bd6290&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F00%2F91%2F20%2F7656f16057ce9da.jpg",
+          "index_url": "https://www.baidu.com"
+        }
+      ]
+    }
+  ]
+}
