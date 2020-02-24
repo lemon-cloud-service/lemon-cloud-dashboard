@@ -31,6 +31,7 @@ func SystemStart() {
 	// 调用核心服务启动函数
 	lccu_log.Info("Start configuring the registry...")
 	err = lccc_core.CoreService().Start(&lccc_core.CoreStartParams{
+		RunGrpcService:                 true,
 		ServiceGeneralConfig:           manager.ConfigManagerInstance().GeneralConfig(),
 		ServiceBaseInfo:                define.GetServiceBaseInfo(),
 		ServiceApplicationInfo:         define.GetServiceApplicationInfo(),
