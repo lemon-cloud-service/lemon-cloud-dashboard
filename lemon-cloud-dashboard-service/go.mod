@@ -8,6 +8,7 @@ require (
 	github.com/lemon-cloud-service/lemon-cloud-common/lemon-cloud-common-utils v0.0.0-00010101000000-000000000000
 	github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common v0.0.0-00010101000000-000000000000
 	github.com/micro/go-micro/v2 v2.1.0
+	gopkg.in/dgrijalva/jwt-go.v3 v3.2.0
 )
 
 replace github.com/lemon-cloud-service/lemon-cloud-dashboard/lemon-cloud-dashboard-common => ../lemon-cloud-dashboard-common
